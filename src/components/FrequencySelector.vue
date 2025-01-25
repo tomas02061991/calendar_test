@@ -13,7 +13,6 @@ import Checkbox from './ui/checkbox/Checkbox.vue';
 import DatePicker from '@/components/DatePicker.vue'
 import { ref } from 'vue';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { co } from 'node_modules/@fullcalendar/core/internal-common';
 import Input from './ui/input/Input.vue';
 interface Props {
 
