@@ -6,9 +6,8 @@ import rrulePlugin from '@fullcalendar/rrule'
 import {ref} from 'vue';
 import EventModal from './EventModal.vue';
 import type { EventRrule } from '@/types/calendar.types';
-import { FormatDateOptions } from '@fullcalendar/core/index.js';
-import { RRule } from 'rrule';
 import { toRRule } from '@/lib/utils';
+import type { CalendarOptions, EventClickArg, DateSelectArg } from '@fullcalendar/core/index.js';
 
 interface Props {
     events?: []
@@ -19,8 +18,9 @@ defineProps<Props>()
 const openModal = ref(false)
 const currentEvent = ref()
 
-const selectDate = (info) => {
-  if(info.event){
+const selectDate = (info: EventClickArg | DateSelectArg) => {
+  if(Object.keys(info).includes('event')){
+    // @ts-ignore
     currentEvent.value = info.event
   } else {
     currentEvent.value = info
@@ -28,7 +28,7 @@ const selectDate = (info) => {
   openModal.value = true
 }
 
-const calendarOptions = ref({
+const calendarOptions = ref<CalendarOptions>({
         plugins: [ timeGridPlugin, interactionPlugin, rrulePlugin ],
         initialView: 'timeGridWeek',
         selectable: true,
@@ -42,10 +42,10 @@ const calendarOptions = ref({
 const onModalClose = (rule: EventRrule) => {
   if(rule) {
     if(rule.recurring && rule.rRule) {
-      console.log("to push", {...rule.event, rrule: rule.rRule})
-      calendarOptions.value.events.push({...rule.event, rrule: toRRule(rule.rRule)})
+      // @ts-ignore
+      calendarOptions.value.events = [...calendarOptions.value.events, {...rule.event, rrule: toRRule(rule.rRule)} ]
     } else {
-      calendarOptions.value.events.push(rule.event)
+      calendarOptions.value.events = [...calendarOptions.value.events, rule.event]
     }
   }
   openModal.value = false

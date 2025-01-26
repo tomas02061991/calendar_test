@@ -22,8 +22,8 @@ defineProps<Props>()
 const interval = defineModel<Number>('interval', {required: true})
 const freq = defineModel<string>('frequency', { required: true})
 const byWeekday = defineModel<Array<Weekday>>('byWeekday', {required: true,})
-const until = defineModel<Date|null>('until', {required: true })
-const count = defineModel<Number|null>('count',{required: true})
+const until = defineModel<Date|undefined>('until', {required: true })
+const count = defineModel<Number|undefined>('count',{required: true})
 
 const end = ref<string>('0')
 const occurance = ref<Number>(1)
@@ -38,14 +38,12 @@ const weekdays = ref([
   RRule.SU
 ])
 
-const selectedWeekdays = ref<Weekday[]>([])
-
 const calculateEnd = () => {
   if(end.value === '1') {
-    until.value = null
+    until.value = undefined
   }
   if(end.value == '0') {
-    count.value = null
+    count.value = undefined
   }
 }
 
@@ -111,6 +109,7 @@ const calculateEnd = () => {
               <div class="flex items-center justify-between grow">
                 <label for="r3">After</Label>
                 <div class="flex items-center">
+                  // @ts-ignore
                   <Input class="w-1/5" :disabled="end !== '1'" type="number" v-model="occurance" @update:model-value="(value) => count = Number(value)"/>
                   <span>occurances</span>
                 </div>

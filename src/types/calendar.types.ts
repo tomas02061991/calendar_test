@@ -19,7 +19,7 @@ export type RRuleObject = {
     freq: string
     interval: number
     byweekday: Weekday[]
-    count?: Number|null
+    count?: Number|undefined
     dtstart: Date
-    until?: Date|null
+    until?: Date|undefined
 }

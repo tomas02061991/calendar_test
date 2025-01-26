@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { RRule, type Frequency } from 'rrule'
+import {type Frequency } from 'rrule'
 import type { RRuleObject } from '@/types/calendar.types'
 
 export function cn(...inputs: ClassValue[]) {

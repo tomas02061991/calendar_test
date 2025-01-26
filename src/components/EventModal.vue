@@ -12,7 +12,7 @@ interface Props {
     event: CalendarEvent
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   isOpen: false
 })
 

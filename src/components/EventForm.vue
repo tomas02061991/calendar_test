@@ -26,7 +26,6 @@ const newRule = ref<EventRrule>({
     freq: RRule.WEEKLY.toString(),
     interval: 1,
     byweekday: [],
-    count: null,
     dtstart: props.newEvent.start,
     until: props.newEvent.end
   }
