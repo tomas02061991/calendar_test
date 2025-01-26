@@ -109,7 +109,6 @@ const calculateEnd = () => {
               <div class="flex items-center justify-between grow">
                 <label for="r3">After</Label>
                 <div class="flex items-center">
-                  // @ts-ignore
                   <Input class="w-1/5" :disabled="end !== '1'" type="number" v-model="occurance" @update:model-value="(value) => count = Number(value)"/>
                   <span>occurances</span>
                 </div>
