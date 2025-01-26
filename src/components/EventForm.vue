@@ -17,7 +17,7 @@ const props = defineProps<Props>()
 
 const newRule = ref<EventRrule>({
   event: {
-    title: '',
+    title:  props.newEvent.title || '',
     start: props.newEvent.start,
     end: props.newEvent.end
   },

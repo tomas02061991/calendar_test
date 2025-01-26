@@ -20,7 +20,11 @@ const openModal = ref(false)
 const currentEvent = ref()
 
 const selectDate = (info) => {
-  currentEvent.value = info
+  if(info.event){
+    currentEvent.value = info.event
+  } else {
+    currentEvent.value = info
+  }
   openModal.value = true
 }
 
@@ -29,6 +33,7 @@ const calendarOptions = ref({
         initialView: 'timeGridWeek',
         selectable: true,
         select: selectDate,
+        eventClick: selectDate,
         events: []
       })
 
